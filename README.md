@@ -153,8 +153,18 @@ Serial.println("Port Partner Connected: " + String(typeCStatus.portPartnerConnec
 Retrieve the current PDO:
 
 ```cpp
-PDObject pdo = cypd.getCurrentPDO();
-Serial.println("Supply Type: " + String(pdo.supplyType));
+    PDObject pdo = cypd.getCurrentPDO();
+    String output = "Current PDO:\n";
+    output += "Supply Type: " + String(pdo.supplyType) + "\n";
+    output += "Dual-Role Power: " + String(pdo.dualRolePower ? "Yes" : "No") + "\n";
+    output += "USB Suspend Supported: " + String(pdo.usbSuspendSupported ? "Yes" : "No") + "\n";
+    output += "Externally Powered: " + String(pdo.externallyPowered ? "Yes" : "No") + "\n";
+    output += "USB Communications Capable: " + String(pdo.usbCommunicationsCapable ? "Yes" : "No") + "\n";
+    output += "Dual-Role Data: " + String(pdo.dualRoleData ? "Yes" : "No") + "\n";
+    output += "Peak Current: " + String(pdo.peakCurrent) + "\n";
+    output += "Voltage: " + String(pdo.voltage * 50) + " mV\n";
+    output += "Max Current: " + String(pdo.maxCurrent * 10) + " mA\n";
+    Serial.println(output);
 ```
 
 ### Get Current RDO
